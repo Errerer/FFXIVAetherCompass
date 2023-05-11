@@ -14,8 +14,8 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Standard)]
     public class MobHuntCompass : Compass
     {
-        public override string CompassName => "Mob Hunt Compass";
-        public override string Description => "Detecting Elite Marks (Notorious Monsters) nearby.";
+        public override string CompassName => "狩猎指南针";
+        public override string Description => "探测附近的精英怪（恶名昭彰的怪物）";
         
         private readonly Dictionary<uint, NMData> nmDataMap = new(); // BnpcDataId => NMData
         private static readonly Vector4 infoTextColour = new(1, .6f, .6f, 1);

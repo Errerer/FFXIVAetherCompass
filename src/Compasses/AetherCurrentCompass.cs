@@ -11,8 +11,8 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Standard)]
     public class AetherCurrentCompass : Compass
     {
-        public override string CompassName => "Aether Current Compass";
-        public override string Description => "Detecting Aether Currents nearby.";
+        public override string CompassName => "以太风脉指南针";
+        public override string Description => "探测附近的风脉泉";
 
         private protected override CompassConfig CompassConfig => Plugin.Config.AetherCurrentConfig;
 

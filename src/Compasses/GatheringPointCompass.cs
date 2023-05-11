@@ -14,8 +14,8 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Standard)]
     public class GatheringPointCompass : Compass
     {
-        public override string CompassName => "Gathering Point Compass";
-        public override string Description => "Detecting nearby gathering points";
+        public override string CompassName => "采集点指南针";
+        public override string Description => "检测附近的采集点";
 
         private protected override CompassConfig CompassConfig 
             => Plugin.Config.GatheringConfig;

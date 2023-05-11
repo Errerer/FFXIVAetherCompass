@@ -21,9 +21,9 @@ namespace AetherCompass.UI.GUI
 
             if (ImGui.Begin("AetherCompass: Configuration"))    // not collapsed
             {
-                ImGuiEx.Checkbox("Enable plugin", ref Plugin.Config.Enabled,
-                    "Enable/Disable this plugin. \n" +
-                    "All compasses will auto pause in certain zones such as PvP zones regardless of this setting.");
+                ImGuiEx.Checkbox("启用插件", ref Plugin.Config.Enabled,
+                    "启用/禁用此插件。 \n" +
+                    "无论此设置如何，所有指南针都将在某些区域（如PvP区域）自动暂停。");
                 Plugin.SetEnabledIfConfigChanged();
                 if (Plugin.Config.Enabled)
                 {
@@ -31,7 +31,7 @@ namespace AetherCompass.UI.GUI
 
                     if (ImGui.BeginTabBar("AetherCompass_Configuration_MainTabBar"))
                     {
-                        if (ImGui.BeginTabItem("Plugin Settings"))
+                        if (ImGui.BeginTabItem("插件设置"))
                         {
                             ImGui.TreePush("AetherCompass_Configuration_TabPluginSettings");
                             ImGui.NewLine();
@@ -39,7 +39,7 @@ namespace AetherCompass.UI.GUI
                             ImGui.TreePop();
                             ImGui.EndTabItem();
                         }
-                        if (ImGui.BeginTabItem("Compass Settings"))
+                        if (ImGui.BeginTabItem("指南针设置"))
                         {
                             ImGui.TreePush("AetherCompass_Configuration_TabCompassSettings");
                             ImGui.NewLine();
@@ -52,16 +52,16 @@ namespace AetherCompass.UI.GUI
                 }
 
                 ImGuiEx.Separator(false, true);
-                if (ImGui.Button("Save"))
+                if (ImGui.Button("保存"))
                     Plugin.Config.Save();
-                if (ImGui.Button("Save & Close"))
+                if (ImGui.Button("保存并关闭"))
                 {
                     Plugin.Config.Save();
                     Plugin.InConfig = false;
                     Plugin.Reload();
                 }
                 ImGui.NewLine();
-                if (ImGui.Button("Close & Discard All Changes"))
+                if (ImGui.Button("关闭并放弃所有更改"))
                 {
                     Plugin.InConfig = false;
                     Plugin.Config.Load();
@@ -87,22 +87,22 @@ namespace AetherCompass.UI.GUI
         {
             // ScreenMark
             ImGuiEx.Checkbox(
-                "Enable marking detected objects on screen", ref Plugin.Config.ShowScreenMark,
+                "启用在屏幕上标记检测到的对象", ref Plugin.Config.ShowScreenMark,
                 "If enabled, will allow Compasses to mark objects detected by them on screen," +
                 "showing the direction and distance.\n\n" +
                 "You can configure this for each compass separately below.");
             if (Plugin.Config.ShowScreenMark)
             {
                 ImGui.TreePush();
-                ImGuiEx.DragFloat("Marker size scale", 100, ref Plugin.Config.ScreenMarkSizeScale,
+                ImGuiEx.DragFloat("标记 大小刻度", 100, ref Plugin.Config.ScreenMarkSizeScale,
                     .01f, PluginConfig.ScreenMarkSizeBound.Min, PluginConfig.ScreenMarkSizeBound.Max);
-                ImGuiEx.DragFloat("Marker text size scale", 100, ref Plugin.Config.ScreenMarkTextRelSizeScale,
+                ImGuiEx.DragFloat("标记 文本大小比例", 100, ref Plugin.Config.ScreenMarkTextRelSizeScale,
                     .1f, PluginConfig.ScreenMarkTextRelSizeBound.Min, PluginConfig.ScreenMarkTextRelSizeBound.Max, "%.1f",
                     tooltip: "Set the size scale for the markers' label text, relative to the marker size");
                 var viewport = ImGui.GetMainViewport().Pos;
                 var vsize = ImGui.GetMainViewport().Size;
                 Vector4 displayArea = GetDisplayAreaFromConfigScreenMarkConstraint();
-                ImGuiEx.DragFloat4("Marker display area (Left/Bottom/Right/Top)", ref displayArea,
+                ImGuiEx.DragFloat4("标记显示区域（左/下/右/上）", ref displayArea,
                     1, PluginConfig.ScreenMarkConstraintMin, 9999, v_fmt: "%.0f",
                     tooltip: "Set the display area for the markers.\n\n" +
                         "The display area is shown as the red rectangle on the screen while configuration window is open.\n" +
@@ -112,9 +112,9 @@ namespace AetherCompass.UI.GUI
                     viewport.Y + vsize.Y - displayArea.Y, // D
                     viewport.X + vsize.X - displayArea.Z, // R
                     displayArea.W - viewport.Y); // U
-                ImGui.Text($"(* The full screen display area is " +
+                ImGui.Text($"(* 全屏显示区域为 " +
                     $"<{viewport.X:0}, {viewport.Y + vsize.Y:0}, {viewport.X + vsize.X:0}, {viewport.Y:0}> )");
-                ImGuiEx.Checkbox("Hide marker when nameplate is inside the marker display area", 
+                ImGuiEx.Checkbox("当铭牌位于标记显示区域内时隐藏标记", 
                     ref Plugin.Config.HideScreenMarkIfNameplateInsideDisplayArea,
                     "If enabled, markers will be hidden if the nameplate is inside the marker display area as set above\n" +
                     "AND if the nameplate is also of certain size.\n\n" +
@@ -124,7 +124,7 @@ namespace AetherCompass.UI.GUI
                 if (Plugin.Config.HideScreenMarkIfNameplateInsideDisplayArea)
                 {
                     ImGui.TreePush();
-                    ImGuiEx.DragInt("Hide only when object is within", Language.Unit.Yalm,
+                    ImGuiEx.DragInt("仅当对象位于时隐藏", Language.Unit.Yalm,
                         50, ref Plugin.Config.HideScreenMarkEnabledDistance, 1, 
                         PluginConfig.HideScreenMarkEnabledDistanceBound.Min, 
                         PluginConfig.HideScreenMarkEnabledDistanceBound.Max,
@@ -137,13 +137,13 @@ namespace AetherCompass.UI.GUI
             ImGui.NewLine();
 
             // DetailWindow
-            ImGuiEx.Checkbox("Show detected objects' details", ref Plugin.Config.ShowDetailWindow,
+            ImGuiEx.Checkbox("显示检测到的对象的详细信息", ref Plugin.Config.ShowDetailWindow,
                 "If enabled, will show a window listing details of detected objects.\n\n" +
                 "You can configure this for each compass separately below.");
             if (Plugin.Config.ShowDetailWindow)
             {
                 ImGui.TreePush();
-                ImGuiEx.Checkbox("Don't show in instanced contents", ref Plugin.Config.HideDetailInContents,
+                ImGuiEx.Checkbox("不显示在实例化的内容中", ref Plugin.Config.HideDetailInContents,
                     "If enabled, will auto hide the detail window in instance contents such as dungeons, trials and raids.");
                 ImGui.TreePop();
             }
@@ -152,33 +152,33 @@ namespace AetherCompass.UI.GUI
             // Hiding options
             if (Plugin.Config.ShowScreenMark || Plugin.Config.ShowDetailWindow)
             {
-                ImGuiEx.Checkbox("Hide compass UI when in event", ref Plugin.Config.HideInEvent, 
+                ImGuiEx.Checkbox("在事件中隐藏指南针UI", ref Plugin.Config.HideInEvent, 
                     "If enabled, will auto hide both markers on screen and the detail window in certain conditions\n" +
                     "such as in event, in cutscene and when using summoning bells");
-                ImGuiEx.Checkbox("Hide compass UI when crafting/gathering/fishing", ref Plugin.Config.HideWhenCraftGather);
+                ImGuiEx.Checkbox("制作/收集/钓鱼时隐藏指南针UI", ref Plugin.Config.HideWhenCraftGather);
             }
             ImGui.NewLine();
             
             // Norification
-            ImGuiEx.Checkbox("Enable chat notification", ref Plugin.Config.NotifyChat,
+            ImGuiEx.Checkbox("启用聊天通知功能", ref Plugin.Config.NotifyChat,
                 "If enabled, will allow compasses to send notifications in game chat when detected an object.\n\n" +
                 "You can configure this for each compass separately below. ");
             if (Plugin.Config.NotifyChat)
             {
                 ImGui.TreePush();
-                ImGuiEx.Checkbox("Also enable sound notification", ref Plugin.Config.NotifySe,
+                ImGuiEx.Checkbox("同时启用声音通知功能", ref Plugin.Config.NotifySe,
                     "If enabled, will allow compasses to make sound notification alongside chat notification.\n\n" +
                     "You can configure this for each compass separately below.");
                 ImGui.TreePop();
             }
-            ImGuiEx.Checkbox("Enable Toast notification", ref Plugin.Config.NotifyToast,
+            ImGuiEx.Checkbox("启用Toast通知", ref Plugin.Config.NotifyToast,
                 "If enabled, will allow compasses to make Toast notifications on screen when detected an object.\n\n" +
                 "You can configure this for each compass separately below.");
             ImGui.NewLine();
 
 #if DEBUG
             // Debug
-            ImGuiEx.Checkbox("[DEBUG] Test all GameObjects", ref Plugin.Config.DebugTestAllGameObjects);
+            ImGuiEx.Checkbox("[DEBUG] 测试所有游戏对象", ref Plugin.Config.DebugTestAllGameObjects);
             ImGui.NewLine();
 #endif
 

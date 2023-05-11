@@ -11,8 +11,8 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Experimental)]
     public class EurekanCompass : Compass
     {
-        public override string CompassName => "Eureka Elemental Compass";
-        public override string Description => "Detecting nearby Eureka Elementals. (By apetih.)";
+        public override string CompassName => "优雷卡元素指南针";
+        public override string Description => "探测附近的优雷卡元素。 (By apetih.)";
 
         private protected override CompassConfig CompassConfig => Plugin.Config.EurekanConfig;
 

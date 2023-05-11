@@ -297,25 +297,25 @@ namespace AetherCompass.Compasses
                     ImGui.BulletText("UI:");
                     ImGui.Indent();
                     if (Plugin.Config.ShowScreenMark)
-                        ImGuiEx.Checkbox("Mark detected objects on screen", ref CompassConfig.MarkScreen,
+                        ImGuiEx.Checkbox("在屏幕上标记检测到的对象", ref CompassConfig.MarkScreen,
                             "Mark objects detected by this compass on screen, showing the direction and distance.");
-                    else ImGui.TextDisabled("Mark-on-screen disabled in Plugin Settings");
+                    else ImGui.TextDisabled("在插件设置中禁用屏幕标记");
                     if (Plugin.Config.ShowDetailWindow)
-                        ImGuiEx.Checkbox("Show objects details", ref CompassConfig.ShowDetail,
+                        ImGuiEx.Checkbox("显示对象详细信息", ref CompassConfig.ShowDetail,
                             "List details of objects detected by this compass in the Details Window.");
-                    else ImGui.TextDisabled("Detail Window disabled in Plugin Settings");
+                    else ImGui.TextDisabled("在插件设置中禁用详细信息窗口");
                     ImGui.Unindent();
 
-                    ImGui.BulletText("Notifications:");
+                    ImGui.BulletText("通知：");
                     ImGui.Indent();
                     if (Plugin.Config.NotifyChat)
                     {
-                        ImGuiEx.Checkbox("Chat", ref CompassConfig.NotifyChat,
-                            "Allow this compass to send a chat message about an object detected.");
+                        ImGuiEx.Checkbox("发送提示消息", ref CompassConfig.NotifyChat,
+                            "允许此指南针发送有关检测到的对象的聊天消息。");
                         if (Plugin.Config.NotifySe)
                         {
-                            ImGuiEx.Checkbox("Sound", ref CompassConfig.NotifySe,
-                                "Also allow this compass to make sound when sending chat message notification.");
+                            ImGuiEx.Checkbox("发送提示声音", ref CompassConfig.NotifySe,
+                                "允许此指南针在发送聊天信息通知时发出声音。");
                             if (CompassConfig.NotifySe)
                             {
                                 ImGui.Indent();
@@ -328,15 +328,15 @@ namespace AetherCompass.Compasses
                                 ImGui.Unindent();
                             }
                         }
-                        else ImGui.TextDisabled("Sound notification disabled in Plugin Settings");
+                        else ImGui.TextDisabled("在插件设置中禁用声音通知");
                     }
-                    else ImGui.TextDisabled("Chat notification disabled in Plugin Settings");
+                    else ImGui.TextDisabled("在插件设置中禁用聊天通知");
                     if (Plugin.Config.NotifyToast)
                     {
-                        ImGuiEx.Checkbox("Toast", ref CompassConfig.NotifyToast,
-                            "Allow this compass to make a Toast notification about an object detected.");
+                        ImGuiEx.Checkbox("推送通知", ref CompassConfig.NotifyToast,
+                            "允许此指南针发出关于检测到的对象的推送通知。");
                     }
-                    else ImGui.TextDisabled("Toast notification disabled in Plugin Settings");
+                    else ImGui.TextDisabled("插件设置中禁用推送通知");
                     ImGui.Unindent();
 
                     DrawConfigUiExtra();

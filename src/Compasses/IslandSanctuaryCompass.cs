@@ -14,9 +14,9 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Experimental)]
     public class IslandSanctuaryCompass : Compass
     {
-        public override string CompassName => "Island Sanctuary Compass";
-        public override string Description => 
-            "Detecting nearby gathering objects and animals in Island Sanctuary";
+        public override string CompassName => "无人岛指南针";
+        public override string Description =>
+            "在无人岛探测附近聚集的物体和动物";
 
         private protected override CompassConfig CompassConfig => Plugin.Config.IslandConfig;
         private IslandSanctuaryCompassConfig IslandConfig => (IslandSanctuaryCompassConfig)CompassConfig;

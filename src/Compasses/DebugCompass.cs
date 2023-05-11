@@ -13,7 +13,7 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Debug)]
     public class DebugCompass : Compass
     {
-        public override string CompassName => "Debug Compass"; 
+        public override string CompassName => "调试指南针"; 
         public override string Description => "For Debug";
 
         private protected override CompassConfig CompassConfig => Plugin.Config.DebugConfig;

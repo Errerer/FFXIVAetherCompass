@@ -14,11 +14,11 @@ namespace AetherCompass.Compasses
     [CompassType(CompassType.Experimental)]
     public class QuestCompass : Compass
     {
-        public override string CompassName => "Quest Compass";
+        public override string CompassName => "探索指南针";
         public override string Description =>
-            "Detecting NPC/objects nearby relevant to your in-progress quests.\n" +
-            "** Currently limited functionality: battle NPCs will not be detected, " +
-            "and the compass sometimes gives inaccurate or, although more rarely, incorrect information.";
+            "检测附近与正在进行的任务相关的NPC/物体 \n" +
+            "** 目前功能有限：不会检测到战斗NPC " +
+            "指南针有时会提供不准确的信息，或者虽然很少提供不正确的信息。";
 
         private protected override CompassConfig CompassConfig => Plugin.Config.QuestConfig;
         private QuestCompassConfig QuestConfig => (QuestCompassConfig)CompassConfig;
